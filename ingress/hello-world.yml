@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-hello-world
+  annotations:
+    # use the shared ingress-nginx
+    kubernggtes.io/ingress.class: "nginx"
+spec:
+  tls:
+    - hosts:
+      - hello.dev.fullbacksystems.com
+      # This assumes tls-secret exists and the SSL
+      # certificate contains a CN for foo.bar.com
+      secretName: hello-dev
+  rules:
+  - host: hello.dev.fullbacksystems.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ant-hello-world
+          servicePort: 8080
