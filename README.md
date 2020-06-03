@@ -25,16 +25,19 @@ Routing to services is performed using the Kubernetes ingress-nginx Controller (
 
 ## Hello World
 
-
 Currently using self signed cert for development purposes.
 
-Generated using:
+1) Generated using:
 
  openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout hello-dev.pem -out hello-dev.crt -subj "/CN=hello.dev.fullbacksystems.com/O=Fullback Systems"
 
 openssl x509 -in hello-dev.crt -text
 
+2) Store the Certs as a secret:
+
+  kubectl create secret tls hello-dev --key hello-dev.pem --cert hello-dev.crt
 
 Usage:
 
   curl -k  -v --resolve hello.dev.fullbacksystems.com:443:192.168.99.101  https://hello.dev.fullbacksystems.com/
+
