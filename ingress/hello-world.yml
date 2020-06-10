@@ -11,7 +11,7 @@ spec:
       - hello.dev.fullbacksystems.com
       # This assumes tls-secret exists and the SSL
       # certificate contains a CN for foo.bar.com
-      secretName: hello-dev
+      secretName: dev-cert
   rules:
   - host: hello.dev.fullbacksystems.com
     http:
