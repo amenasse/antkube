@@ -16,6 +16,9 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "false"
+    # Customise ingress object to allow for larger body sizes to void 413
+    # content to large errors when pushing images
+    nginx.ingress.kubernetes.io/proxy-body-size: 64m
   labels: {}
   tls:
     # Secrets must be manually created in the namespace.
