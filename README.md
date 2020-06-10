@@ -47,3 +47,17 @@ Usage:
 
   curl -k  -v --resolve hello.dev.fullbacksystems.com:443:192.168.99.101  https://hello.dev.fullbacksystems.com/
 
+
+## Docker Registry
+
+As an experiment Docker registry is installed using Helm:
+
+  helm [install|upgrade] -f helm/docker-registry.yml  docker-registry stable/docker-registry
+
+Registry is hosted at registry.dev.fullbacksystems.com
+
+Since the Cert is self signed the local Docker Daemon needs to be configured to trust the cert (https://docs.docker.com/registry/insecure/#use-self-signed-certificates). If using podman  you just need to add the cert to the OS to trust the cert:
+
+    sudo cp certs/dev.fullbacksystems.com.crt /usr/local/share/ca-certificates/dev.fullbacksystems.com.crt
+    sudo update-ca-certificates
+
