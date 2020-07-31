@@ -1,0 +1,37 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: docker-registry
+provisioner: kubernetes.io/no-provisioner
+# WaitForFirstConsumer mode delays the binding and provisioning of a
+# PersistentVolume until a Pod using the PersistentVolumeClaim is created.
+# https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode
+volumeBindingMode: WaitForFirstConsumer
+---
+
+# Manually creating the Persistent Volume for now, consider replacing with
+# local static provisioner to auto discover mounted disks and create persistent volume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: docker-registry-pv
+  labels:
+    fs-uuid: "07db1e5c-03eb-4e08-b02e-9bc04f2b95af"
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: docker-registry
+  local:
+    path: /mnt/docker-registry/07db1e5c-03eb-4e08-b02e-9bc04f2b95af
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - mico

@@ -29,3 +29,9 @@ ingress:
     - secretName: dev-cert
       hosts:
         - registry.dev.fullbacksystems.com
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 5Gi
+  storageClass: docker-registry
+

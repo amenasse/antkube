@@ -61,4 +61,6 @@ Since the Cert is self signed the local Docker Daemon needs to be configured to 
     sudo update-ca-certificates 
 
 
+A filesystem mounted on the Node (/mnt/docker-registry/<disk-uuid>) is used for storage. This is represented on the Kubernetes side by a PersistentVolume using the StorageClass of 'docker-registry'. This is currently created manually (static provisioning). A PersistentVolumeClaim matching this StorageClass is used as the Pods Volume.
+
 [Traefik]: https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller
