@@ -4,7 +4,7 @@ Artifacts for my personal Kubernetes cluster.
 
 # Architecture
 
-Currently being developed on Minikube, plan is to move to small self hosted Rasberry Pi cluster.
+Plan is to run on a small self hosted Rasberry Pi cluster.
 
 Routing to services from outside the cluster is performed using [Traefik][Traefik] deployed as an ingress controller. This is automatically deployed by k3 as an Auto-Deploying Manifest.
 
