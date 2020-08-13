@@ -15,5 +15,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: ant-hello-world
+          serviceName: hello-world
           servicePort: 8080
