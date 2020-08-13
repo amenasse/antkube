@@ -19,9 +19,8 @@ Currently using self signed cert for development purposes.
 1) Generated using:
 
 ```
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout certs/dev.crt -out hello-dev.crt -subj "/CN=*.dev.fullbacksystems.com/O=Fullback Systems"
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout certs/dev.crt -out certs/dev.crt -subj "/CN=*.dev.fullbacksystems.com/O=Fullback Systems"
 ```
-TODO: Add an Alt name for dev.fullbacksystems.com for the cert
 
 
 openssl x509 -in hello-dev.crt -text
