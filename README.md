@@ -35,12 +35,19 @@ openssl x509 -in hello-dev.crt -text
 
 ## Hello World
 
+https://hello.dev.fullbacksystems.com
 
-Usage:
+## Fullback Systems Website
 
-  curl -k  -v --resolve hello.dev.fullbacksystems.com:443:192.168.99.101  https://hello.dev.fullbacksystems.com/
+The Fullback Systems website (https://fullbacksystems.com) is deployed for development / staging purposes.
+
+https://website.dev.fullbacksystems.com
+
+
 
 ## Docker Registry
+
+https://registry.dev.fullbacksystems.com
 
 As an experiment Docker registry is installed using Helm:
 
