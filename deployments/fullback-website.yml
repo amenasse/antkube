@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fullback-website
+  labels:
+    app: fullback-website
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: 80
+      name: http
+      protocol: TCP
+  selector:
+    app: fullback-website
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fullback-website
+  labels:
+    app: fullback-website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fullback-website
+  template:
+    metadata:
+      labels:
+        app: fullback-website
+    spec:
+      containers:
+      - name: fullback-website
+        image: registry.dev.fullbacksystems.com/fullback-systems-website:8523786c
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
