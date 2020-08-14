@@ -10,7 +10,13 @@ Routing to services from outside the cluster is performed using [Traefik][Traefi
 
 # Getting Started
 
-k3s is currently manually curl installed as per the docs. It will eventually be installed as part of the OS images cloud-init script or baked into the image. The shell script will configure a systemd service which will start on boot.
+k3s is currently manually curl installed as per the docs. [Ephemeral Containers][Ephemeral] feature gate is enabled to aid debugging Pods.  The script configures a systemd service which will start on boot.
+
+```
+curl -Ls https://get.k3s.io | INSTALL_K3S_EXEC="--kube-apiserver-arg=feature-gates=EphemeralContainers=true" sh -
+```
+
+Plan is to eventually be installed as part of the OS images cloud-init script or baked into the image.
 
 # TLS
 
@@ -63,3 +69,4 @@ Since the Cert is self signed the local Docker Daemon needs to be configured to 
 A filesystem mounted on the Node (/mnt/docker-registry/<disk-uuid>) is used for storage. This is represented on the Kubernetes side by a PersistentVolume using the StorageClass of 'docker-registry'. This is currently created manually (static provisioning). A PersistentVolumeClaim matching this StorageClass is used as the Pods Volume.
 
 [Traefik]: https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller
+[Ephemeral]: https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#ephemeral-container
