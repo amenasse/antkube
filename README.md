@@ -54,11 +54,7 @@ https://website.dev.fullbacksystems.com
 
 https://registry.dev.fullbacksystems.com
 
-As an experiment Docker registry is installed using Helm:
-
-  helm [install|upgrade] -f helm/docker-registry.yml  docker-registry stable/docker-registry
-
-Registry is hosted at registry.dev.fullbacksystems.com
+A Docker registry is hosted in the Cluster
 
 Since the Cert is self signed the local Docker Daemon needs to be configured to trust the cert (https://docs.docker.com/registry/insecure/#use-self-signed-certificates). If using podman  you just need to add the cert to the OS to trust the cert:
 
