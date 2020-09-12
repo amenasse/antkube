@@ -5,7 +5,16 @@ metadata:
 provisioner: kubernetes.io/no-provisioner
 # WaitForFirstConsumer mode delays the binding and provisioning of a
 # PersistentVolume until a Pod using the PersistentVolumeClaim is created.
+#
+# Delaying volume binding ensures that the PersistentVolumeClaim binding
+# decision will also be evaluated with any other node constraints the Pod may
+# have, such as node resource requirements, node selectors, Pod affinity, and Pod
+# anti-affinity.
+
+# https://kubernetes.io/docs/concepts/storage/volumes/#local
+# https://kubernetes.io/docs/concepts/storage/storage-classes/#local
 # https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode
+
 volumeBindingMode: WaitForFirstConsumer
 ---
 
