@@ -30,9 +30,11 @@ spec:
       labels:
         app: fullback-website
     spec:
+      imagePullSecrets:
+        - name: local-registry
       containers:
       - name: fullback-website
-        image: registry.dev.fullbacksystems.com/fullback-systems-website:8523786c
+        image: registry.dev.fullbacksystems.com/fullback-systems-website:ac9ff70
         imagePullPolicy: Always
         ports:
         - containerPort: 80

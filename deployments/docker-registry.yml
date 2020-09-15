@@ -66,7 +66,7 @@ spec:
       volumes:
         - name: auth
           secret:
-            secretName: docker-registry-secret
+            secretName: docker-registry-auth
             items:
             - key: htpasswd
               path: htpasswd

@@ -69,8 +69,18 @@ Generating and storing the htpasswd secret:
 
   kubectl create secret generic docker-registry-auth --from-literal=htpasswd=$(htpasswd -Bbn <username> <password>)
 
+For Pods to be able to pull from the registry a docker-regsitry secret matching the credentials specified in the htpasswd needs to be created:
+
+  kubectl create secret docker-registry local-registry \
+    --docker-server=registry.dev.fullbacksystems.com \
+    --docker-username=DOCKER_USERNAME \
+    --docker-password=DOCKER_PASSWORD
+
+
+Pods are configured to use these credentials by referencing the secret in the [imagePullSecrets][ImagePullSecret] section of a Pod definition.
 
 A filesystem mounted on the Node (/mnt/docker-registry/<disk-uuid>) is used for storage. This is represented on the Kubernetes side by a PersistentVolume using the StorageClass of 'docker-registry'. This is currently created manually (static provisioning). A PersistentVolumeClaim matching this StorageClass is used as the Pods Volume.
 
+[ImagePullSecret]: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
 [Traefik]: https://rancher.com/docs/k3s/latest/en/networking/#traefik-ingress-controller
 [Ephemeral]: https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#ephemeral-container
